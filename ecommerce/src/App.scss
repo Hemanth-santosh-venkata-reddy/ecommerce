@@ -1,0 +1,33 @@
+@use "./styles/reset";
+@import "./styles/variables";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// font-family: "Poppins", sans-serif;
+
+img {
+    max-width:100%;
+}
+.pink-gradiant{
+    background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,0.008928571428571397) 0%, rgba(246,198,244,1) 72%);
+}
+.continue-btn{
+    background-color:$primary-color !important;
+    border: none !important;
+    border-radius: 2px !important;
+}
+.login-form{
+    h6{
+        span{
+            color:$primary-color;
+        }
+    }
+    .form-check-label{
+        font-size: 0.875rem;
+    }
+}
+input[type='text'],input[type='email'],input[type='password']{
+    padding: 12px 16px;
+    border-radius: 2px;
+}

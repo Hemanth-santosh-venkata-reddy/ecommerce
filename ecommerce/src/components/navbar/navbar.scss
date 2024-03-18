@@ -1,0 +1,51 @@
+@import "../../styles//variables";
+
+.navbar-brand {
+    width: 62px;
+
+    span {
+        font-size: 2rem;
+    }
+}
+
+.cart-btn {
+    background-color: $transparent !important;
+    padding: 0 !important;
+    color: rgb(0, 0, 0) !important;
+    border: none !important;
+
+    svg {
+        font-size: 30px;
+    }
+
+    span {
+        height: 25px;
+        width: 25px;
+        display: grid;
+        place-items: center;
+    }
+}
+
+.nav-link {
+    font-size: 1.2rem !important;
+    position: relative;
+
+    &:hover,
+    &.active {
+        transform: scale(1);
+        &::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: #fa4b10;
+            inset: 36px auto -22px 24%;
+            border-radius: 20px;
+        }
+    }
+}
+.remove_underline.nav-link{
+    &::after{
+        background-color: $transparent;
+    }
+}
