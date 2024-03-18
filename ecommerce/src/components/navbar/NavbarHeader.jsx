@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -7,13 +7,28 @@ import Button from "react-bootstrap/Button";
 import company_logo from "../assets/logo.png";
 import "./navbar.scss";
 import { BsCart3 } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Auth";
 
 const NavbarHeader = () => {
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const logstatus = localStorage.getItem("login");
+    setIsLoggedIn(!!logstatus);
+  }, []);
+
+  const clearlocal = () => {
+    localStorage.removeItem("login");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
   return (
     <Navbar
       collapseOnSelect
       expand="lg"
-      className="bg-body-tertiary border-bottom" sticky="top" 
+      className="bg-body-tertiary border-bottom"
+      sticky="top"
     >
       <Container>
         <Navbar.Brand href="#home" className="d-flex align-items-center">
@@ -41,13 +56,29 @@ const NavbarHeader = () => {
           </Nav>
           <Nav>
             <Nav.Link href="/login" className="remove_underline">
-            <Button variant="outline-secondary" className="rounded-pill">Logout</Button></Nav.Link>
+              {isLoggedIn ? (
+                <Button
+                  variant="outline-secondary"
+                  className="rounded-pill"
+                  onClick={clearlocal}
+                >
+                  {" "}
+                  Logout
+                </Button>
+              ) : (
+                <Button variant="outline-secondary" className="rounded-pill">
+                  {" "}
+                  Login
+                </Button>
+              )}
+            </Nav.Link>
             <Nav.Link eventKey={2} href="/cart" className="remove_underline">
               <Button className="position-relative cart-btn ms-4">
-              <BsCart3 />
-  <span className="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle text-white">4
-  </span>
-</Button>
+                <BsCart3 />
+                <span className="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle text-white">
+                  4
+                </span>
+              </Button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
